@@ -213,7 +213,8 @@ input[type="range"] { width: 100%; accent-color: var(--ink); height: 2.2rem; cur
 .fig .polaroid img { aspect-ratio: 3 / 4; }
 .fig figcaption { font-size: clamp(1rem, 3vw, 1.5rem); padding: .2rem .2rem .1rem; text-align: center; }
 .fig--kasha { left: 2%; width: 24%; --r: -3deg; }
-.fig--dixon { left: 27%; width: 17%; --r: 3deg; }
+.fig--dixon { left: 29%; width: 13%; --r: 3deg; }
+.fig--dixon .polaroid img { aspect-ratio: 1; }
 .fig--sage { left: 65%; width: 32%; --r: 2deg; }
 .fig--triss { left: 46%; width: 19%; --r: 0deg; z-index: 2; }
 .stage[data-s="herd"] .fig--triss { left: 54%; --r: 6deg; }
@@ -222,8 +223,8 @@ input[type="range"] { width: 100%; accent-color: var(--ink); height: 2.2rem; cur
 .stage[data-s="bully"] .fig--kasha { left: -2%; transform: scale(.88) rotate(-7deg); transform-origin: bottom; }
 .stage[data-s="stare"] .fig--triss { left: 49%; --r: 0deg; transform: scale(1.12); transform-origin: bottom; }
 .stage[data-s="stare"] .fig--sage { left: 61%; }
-.stage[data-s="dig"] .fig--dixon { left: 36%; transform: translateY(18%) rotate(-10deg) scale(1.1); transform-origin: bottom; }
-.stage[data-s="dig"] .fig--triss { left: 52%; --r: 4deg; }
+.stage[data-s="dig"] .fig--dixon { left: 33%; transform: rotate(-9deg); transform-origin: bottom; }
+.stage[data-s="dig"] .fig--triss { left: 50%; --r: 4deg; }
 .stage .polaroid { transform: rotate(var(--r, 0deg)); transition: transform .7s cubic-bezier(.3,1.3,.5,1); }
 .stage__line { min-height: 3.4em; font-size: 1.5rem; margin-top: 1.1rem; }
 .stage__btns { display: flex; flex-wrap: wrap; gap: .7rem; align-items: center; margin-top: 1rem; }
