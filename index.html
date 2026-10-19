@@ -1,514 +1,230 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Orange and Unemployed</title>
-    <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Fredoka:wght@400;600;700&family=Lato:wght@400;700&display=swap">
-    <style>
-        :root {
-            --vizsla-rust: #D4845C;
-            --cream: #FFF8F0;
-            --chocolate: #2C2420;
-            --peach: #F0C5A8;
-            --slate: #6B6460;
-            --cream-dark: #E8D5C4;
-        }
-
-        @media (prefers-color-scheme: dark) {
-            :root:not([data-theme="light"]) {
-                --vizsla-rust: #E8A876;
-                --cream: #1A1815;
-                --chocolate: #F5F0EB;
-                --peach: #D4956F;
-                --slate: #B8AFA5;
-                --cream-dark: #2A241A;
-            }
-        }
-
-        :root[data-theme="dark"] {
-            --vizsla-rust: #E8A876;
-            --cream: #1A1815;
-            --chocolate: #F5F0EB;
-            --peach: #D4956F;
-            --slate: #B8AFA5;
-            --cream-dark: #2A241A;
-        }
-
-        * {
-            margin: 0;
-            padding: 0;
-            box-sizing: border-box;
-        }
-
-        body {
-            font-family: 'Lato', -apple-system, BlinkMacSystemFont, 'Segoe UI', sans-serif;
-            color: var(--chocolate);
-            background: var(--cream);
-            line-height: 1.6;
-        }
-
-        /* Navigation */
-        nav {
-            position: sticky;
-            top: 0;
-            background: var(--cream);
-            border-bottom: 2px solid var(--vizsla-rust);
-            padding: 1.5rem 2rem;
-            display: flex;
-            justify-content: space-between;
-            align-items: center;
-            z-index: 100;
-            box-shadow: 0 2px 8px rgba(0, 0, 0, 0.08);
-        }
-
-        nav h1 {
-            font-family: 'Fredoka', sans-serif;
-            font-size: 1.8rem;
-            font-weight: 700;
-            color: var(--vizsla-rust);
-            letter-spacing: -0.5px;
-        }
-
-        nav a {
-            font-family: 'Fredoka', sans-serif;
-            font-size: 1rem;
-            font-weight: 600;
-            color: var(--chocolate);
-            text-decoration: none;
-            margin-left: 2rem;
-            transition: color 0.2s;
-        }
-
-        nav a:hover {
-            color: var(--vizsla-rust);
-        }
-
-        /* Hero Section */
-        .hero {
-            display: flex;
-            flex-direction: column;
-            align-items: center;
-            justify-content: center;
-            padding: 3rem 2rem;
-            gap: 2rem;
-            max-width: 900px;
-            margin: 0 auto;
-        }
-
-        .hero-image {
-            width: 100%;
-            max-width: 400px;
-            aspect-ratio: 1;
-            border-radius: 20px;
-            overflow: hidden;
-            box-shadow: 0 10px 40px rgba(212, 132, 92, 0.15);
-        }
-
-        .hero-image img {
-            width: 100%;
-            height: 100%;
-            object-fit: cover;
-        }
-
-        .hero-content {
-            text-align: center;
-        }
-
-        .hero h2 {
-            font-family: 'Fredoka', sans-serif;
-            font-size: 3rem;
-            font-weight: 700;
-            color: var(--vizsla-rust);
-            margin-bottom: 0.5rem;
-            letter-spacing: -1px;
-        }
-
-        .hero p {
-            font-size: 1.3rem;
-            color: var(--slate);
-            margin-bottom: 1rem;
-            font-weight: 400;
-        }
-
-        .tagline {
-            font-family: 'Fredoka', sans-serif;
-            font-size: 1.1rem;
-            font-weight: 600;
-            color: var(--vizsla-rust);
-        }
-
-        /* Sections */
-        .section {
-            padding: 3rem 2rem;
-            border-top: 1px solid var(--cream-dark);
-        }
-
-        .section-content {
-            max-width: 900px;
-            margin: 0 auto;
-        }
-
-        .section h3 {
-            font-family: 'Fredoka', sans-serif;
-            font-size: 2rem;
-            font-weight: 700;
-            color: var(--vizsla-rust);
-            margin-bottom: 1.5rem;
-            text-wrap: balance;
-        }
-
-        .section h4 {
-            font-family: 'Fredoka', sans-serif;
-            font-size: 1.3rem;
-            font-weight: 600;
-            color: var(--chocolate);
-            margin-bottom: 1rem;
-        }
-
-        .about-triss {
-            background: var(--cream-dark);
-            border-left: 4px solid var(--vizsla-rust);
-            padding: 1.5rem;
-            border-radius: 8px;
-            margin-bottom: 1.5rem;
-        }
-
-        .about-triss p {
-            font-size: 1rem;
-            line-height: 1.8;
-            margin-bottom: 1rem;
-        }
-
-        .about-triss p:last-child {
-            margin-bottom: 0;
-        }
-
-        .facts {
-            display: grid;
-            grid-template-columns: 1fr 1fr;
-            gap: 1.5rem;
-            margin-bottom: 2rem;
-        }
-
-        .fact-card {
-            background: var(--cream-dark);
-            padding: 1.5rem;
-            border-radius: 12px;
-            border-top: 3px solid var(--peach);
-        }
-
-        .fact-label {
-            font-family: 'Fredoka', sans-serif;
-            font-size: 0.85rem;
-            font-weight: 700;
-            color: var(--vizsla-rust);
-            text-transform: uppercase;
-            letter-spacing: 1px;
-            margin-bottom: 0.5rem;
-        }
-
-        .fact-value {
-            font-size: 1.1rem;
-            color: var(--chocolate);
-            font-weight: 500;
-        }
-
-        .breed-info {
-            font-size: 1rem;
-            line-height: 1.8;
-            color: var(--chocolate);
-            margin-bottom: 1.5rem;
-        }
-
-        /* Photo Gallery */
-        .gallery {
-            display: grid;
-            grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
-            gap: 1.5rem;
-            margin-top: 2rem;
-        }
-
-        .gallery-item {
-            border-radius: 12px;
-            overflow: hidden;
-            box-shadow: 0 4px 16px rgba(212, 132, 92, 0.12);
-            transition: transform 0.3s, box-shadow 0.3s;
-            background: var(--cream-dark);
-        }
-
-        .gallery-item img {
-            width: 100%;
-            height: 280px;
-            object-fit: contain;
-            display: block;
-        }
-
-        .gallery-item:hover {
-            transform: translateY(-4px);
-            box-shadow: 0 8px 24px rgba(212, 132, 92, 0.2);
-        }
-
-        .gallery-label {
-            font-family: 'Fredoka', sans-serif;
-            font-size: 0.9rem;
-            font-weight: 600;
-            color: var(--slate);
-            padding: 0.75rem;
-            text-align: center;
-        }
-
-        .family-subsection {
-            margin-bottom: 3rem;
-        }
-
-        /* Buttons & Links */
-        .button-group {
-            display: flex;
-            gap: 1rem;
-            margin-top: 2rem;
-            justify-content: center;
-            flex-wrap: wrap;
-        }
-
-        .btn {
-            font-family: 'Fredoka', sans-serif;
-            font-size: 1rem;
-            font-weight: 600;
-            padding: 1rem 2rem;
-            border-radius: 12px;
-            text-decoration: none;
-            transition: all 0.2s;
-            border: 2px solid var(--vizsla-rust);
-            cursor: pointer;
-        }
-
-        .btn-primary {
-            background: var(--vizsla-rust);
-            color: white;
-        }
-
-        .btn-primary:hover {
-            background: var(--chocolate);
-            border-color: var(--chocolate);
-            transform: translateY(-2px);
-        }
-
-        .btn-secondary {
-            background: transparent;
-            color: var(--vizsla-rust);
-        }
-
-        .btn-secondary:hover {
-            background: var(--peach);
-            color: var(--chocolate);
-            border-color: var(--peach);
-        }
-
-        /* Footer */
-        footer {
-            padding: 2rem;
-            text-align: center;
-            border-top: 2px solid var(--vizsla-rust);
-            margin-top: 3rem;
-        }
-
-        footer a {
-            color: var(--vizsla-rust);
-            text-decoration: none;
-            margin: 0 1rem;
-            font-weight: 500;
-            transition: color 0.2s;
-        }
-
-        footer a:hover {
-            color: var(--chocolate);
-        }
-
-        @media (max-width: 768px) {
-            nav {
-                flex-direction: column;
-                gap: 1rem;
-            }
-
-            nav a {
-                margin-left: 0;
-            }
-
-            .hero h2 {
-                font-size: 2rem;
-            }
-
-            .section h3 {
-                font-size: 1.5rem;
-            }
-
-            .facts {
-                grid-template-columns: 1fr;
-            }
-        }
-    </style>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Orange and Unemployed</title>
+  <meta name="description" content="Triss, a Hungarian Vizsla from Fort Worth, Texas. Orange, unemployed, and in charge.">
+  <link rel="icon" href="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 32 32'%3E%3Ccircle cx='16' cy='16' r='16' fill='%23e8703a'/%3E%3Ccircle cx='16' cy='20' r='6' fill='%23141110'/%3E%3Ccircle cx='8' cy='12' r='3' fill='%23141110'/%3E%3Ccircle cx='24' cy='12' r='3' fill='%23141110'/%3E%3Ccircle cx='13' cy='7' r='3' fill='%23141110'/%3E%3Ccircle cx='19' cy='7' r='3' fill='%23141110'/%3E%3C/svg%3E">
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Bricolage+Grotesque:opsz,wdth,wght@12..96,75..100,400..800&family=Caveat:wght@700&display=swap">
+  <link rel="stylesheet" href="styles.css">
 </head>
 <body>
-    <nav>
-        <h1>🧡 Orange & Unemployed</h1>
+  <header class="nav">
+    <div class="wrap nav__in">
+      <a class="nav__logo" href="index.html">Orange and Unemployed</a>
+      <nav class="nav__links" aria-label="Main">
+        <a href="index.html" aria-current="page">Triss</a>
+        <a href="friends.html">Friends</a>
+      </nav>
+    </div>
+  </header>
+
+  <main>
+    <section class="hero">
+      <div class="wrap hero__grid">
         <div>
-            <a href="#home">Home</a>
-            <a href="friends.html">Friends</a>
+          <h1 class="h1" aria-label="Orange and unemployed">
+            <span class="h1__line"><span>Orange</span></span>
+            <span class="h1__line"><span>and</span></span>
+            <span class="h1__line"><span>Unemployed</span></span>
+          </h1>
+          <p class="hero__lede">Meet Triss. Hungarian Vizsla. Born in Fort Worth, raised in Louisiana, in charge of everything.</p>
+          <div class="hero__cta">
+            <a class="btn" href="#day">Spend a day with her</a>
+            <a class="btn btn--ghost" href="friends.html">Meet her friends</a>
+          </div>
         </div>
-    </nav>
-
-    <section class="hero" id="home">
-        <div class="hero-image">
-            <img src="images/triss headshot.jpg" alt="Triss headshot">
-        </div>
-        <div class="hero-content">
-            <h2>Triss</h2>
-            <p>Hungarian Vizsla · Texas Born · Louisiana Raised</p>
-            <span class="tagline">✨ Meet the girl herself ✨</span>
-        </div>
+        <figure class="hero__photo">
+          <div class="polaroid">
+            <img src="img/triss-headshot.jpg" alt="Triss looking straight at the camera with long floppy ears" style="object-position: 50% 40%">
+            <figcaption class="hand">Yes, I know I'm cute.</figcaption>
+          </div>
+          <div class="badge hand" aria-hidden="true">Good girl<br>since 2021</div>
+        </figure>
+      </div>
     </section>
 
-    <section class="section">
-        <div class="section-content">
-            <h3>About Me</h3>
-            <div class="about-triss">
-                <p>Hey! I'm Triss, named after Triss Merigold from The Witcher (yes, I'm that cool). I was born on <strong>November 21, 2021</strong>, in Fort Worth, Texas, and got my new adventure in <strong>February 2022</strong> when I moved to Louisiana with my humans.</p>
-                <p>I spend my days napping on the couch, helping my human work from the office (moral support is my specialty), and being the absolute best girl. Come hang out and get to know me!</p>
-            </div>
+    <div class="tape">
+      <div class="wrap tape__in">
+        <span>Professional napper</span>
+        <span>Office moral support</span>
+        <span>Yard security</span>
+        <span>Friend herder</span>
+      </div>
+    </div>
 
-            <div class="facts">
-                <div class="fact-card">
-                    <div class="fact-label">Born</div>
-                    <div class="fact-value">November 21, 2021</div>
-                </div>
-                <div class="fact-card">
-                    <div class="fact-label">Birthplace</div>
-                    <div class="fact-value">Fort Worth, Texas</div>
-                </div>
-                <div class="fact-card">
-                    <div class="fact-label">Current Home</div>
-                    <div class="fact-value">Louisiana</div>
-                </div>
-                <div class="fact-card">
-                    <div class="fact-label">Breed</div>
-                    <div class="fact-value">Hungarian Vizsla</div>
-                </div>
-            </div>
+    <section class="band band--paper" id="resume">
+      <div class="wrap resume">
+        <div class="form">
+          <h2 class="h2">Résumé</h2>
+          <dl>
+            <dt>Name</dt>
+            <dd>Triss, after Triss Merigold from The Witcher</dd>
+            <dt>Born</dt>
+            <dd>November 21, 2021, in Fort Worth, Texas</dd>
+            <dt>Moved</dt>
+            <dd>February 2022, to Louisiana, with her humans</dd>
+            <dt>Breed</dt>
+            <dd>Hungarian Vizsla, the "Velcro dog." She has never once left your side.</dd>
+            <dt>Experience</dt>
+            <dd>Office assistant. Stands on the paperwork. Stares at you until you stop working.</dd>
+            <dt>Skills</dt>
+            <dd>Napping, moral support, herding Sage, taking Kasha's spot</dd>
+            <dt>Employer</dt>
+            <dd>Nobody. Proudly.</dd>
+          </dl>
         </div>
+        <div class="resume__pics">
+          <figure class="polaroid">
+            <img src="img/helping-pratice-law.jpg" alt="Triss standing on a desk, nose down on a stack of papers" style="object-position: 70% 25%">
+            <figcaption class="hand">Reviewing the paperwork.</figcaption>
+          </figure>
+          <figure class="polaroid">
+            <img src="img/stop-working.jpg" alt="Triss sitting on the desk and staring into the camera" style="object-position: 80% 40%">
+            <figcaption class="hand">Please stop typing.</figcaption>
+          </figure>
+        </div>
+      </div>
     </section>
 
-    <section class="section">
-        <div class="section-content">
-            <h3>About Hungarian Vizslas</h3>
-            <div class="breed-info">
-                <p>Hungarian Vizslas are an ancient breed, originating in Hungary centuries ago and documented in 10th-century Hungarian writings. We're known for our distinctive russet-gold coat, lean athletic build, and incredibly affectionate temperament. Vizslas are often called "Velcro dogs" because we love being close to our humans—we're loyal, energetic, and eager to please.</p>
-                <p>We're versatile hunters and athletes, but honestly? We just want to be your best friend. We thrive on companionship and are happiest when we're by your side, whether that's on an adventure or just hanging out at home.</p>
-            </div>
-        </div>
-    </section>
-
-    <section class="section">
-        <div class="section-content">
-            <h3>My Family History</h3>
-            <p style="margin-bottom: 2rem; color: var(--slate);">Where I come from. My parents are amazing, and I've got littermates I never forget. 🐕</p>
-
-            <div class="family-subsection">
-                <h4>Dewey (Daddy)</h4>
-                <div class="gallery">
-                    <div class="gallery-item">
-                        <img src="images/Daddy dewey.jpg" alt="Dewey - Triss's dad">
-                        <div class="gallery-label">Dewey #1</div>
-                    </div>
-                    <div class="gallery-item">
-                        <img src="images/Daddy dewey2.jpg" alt="Dewey - Triss's dad">
-                        <div class="gallery-label">Dewey #2</div>
-                    </div>
-                </div>
-            </div>
-
-            <div class="family-subsection">
-                <h4>Piper (Mama)</h4>
-                <div class="gallery">
-                    <div class="gallery-item">
-                        <img src="images/momma.jpg" alt="Piper - Triss's mom">
-                        <div class="gallery-label">Piper #1</div>
-                    </div>
-                    <div class="gallery-item">
-                        <img src="images/momms piper.jpg" alt="Piper - Triss's mom">
-                        <div class="gallery-label">Piper #2</div>
-                    </div>
-                </div>
-            </div>
-
-            <div class="family-subsection">
-                <h4>My Littermates</h4>
-                <div class="gallery">
-                    <div class="gallery-item">
-                        <img src="images/triss litter.jpg" alt="Triss's litter">
-                        <div class="gallery-label">The Litter</div>
-                    </div>
-                    <div class="gallery-item">
-                        <img src="images/triss and siblings.jpg" alt="Triss with her siblings">
-                        <div class="gallery-label">Me & My Siblings</div>
-                    </div>
-                </div>
-            </div>
-        </div>
-    </section>
-
-    <section class="section">
-        <div class="section-content">
-            <h3>Growing Up</h3>
-            <p style="margin-bottom: 2rem; color: var(--slate);">From tiny pup to full-grown good girl. Here's my journey so far.</p>
-
-            <div class="gallery">
-                <div class="gallery-item">
-                    <img src="images/First B Day.jpg" alt="Triss's first birthday">
-                    <div class="gallery-label">First Birthday 🎂</div>
-                </div>
-                <div class="gallery-item">
-                    <img src="images/In the safe space.jpg" alt="Triss relaxing">
-                    <div class="gallery-label">Safe Space Naps</div>
-                </div>
-                <div class="gallery-item">
-                    <img src="images/Brave new owrld.jpg" alt="Triss exploring">
-                    <div class="gallery-label">Brave New World</div>
-                </div>
-                <div class="gallery-item">
-                    <img src="images/Helping Pratice Law.jpg" alt="Triss helping with work">
-                    <div class="gallery-label">Office Assistant</div>
-                </div>
-                <div class="gallery-item">
-                    <img src="images/Stop Working.jpg" alt="Triss demanding attention">
-                    <div class="gallery-label">Stop Working!</div>
-                </div>
-                <div class="gallery-item">
-                    <img src="images/Huntin.jpg" alt="Triss hunting">
-                    <div class="gallery-label">Hunting Mode</div>
-                </div>
-            </div>
-
-            <div class="button-group">
-                <a href="friends.html" class="btn btn-primary">Meet My Friends</a>
-            </div>
-        </div>
-    </section>
-
-    <section class="section" id="friends">
-        <div class="section-content">
-            <h3>Coming Soon!</h3>
-            <p style="margin-bottom: 1.5rem; color: var(--slate);">More stories and memories are coming. Check back soon!</p>
-        </div>
-    </section>
-
-    <footer>
-        <p style="margin-bottom: 1rem; color: var(--slate);">Learn more about my breed</p>
+    <section class="band band--orange" id="day">
+      <div class="wrap day">
         <div>
-            <a href="https://www.facebook.com/adeavizsla" target="_blank">Adéa Vizsla (My Breeder)</a>
-            <a href="https://en.wikipedia.org/wiki/Vizsla" target="_blank">Vizslas on Wikipedia</a>
+          <h2 class="h2">A day with Triss</h2>
+          <div class="day__time" id="time" aria-live="polite">6:15 AM</div>
+          <div class="day__title" id="title">Yard security</div>
+          <p class="day__text" id="text">Anything that moves out there is a suspect.</p>
+          <div class="day__ctl">
+            <label for="clock">Drag to change the time</label>
+            <input type="range" id="clock" min="0" max="4" step="1" value="0">
+            <div class="day__stops" id="stops"></div>
+          </div>
         </div>
-        <p style="margin-top: 1.5rem; font-size: 0.9rem; color: var(--slate);">Orange and Unemployed © 2026</p>
-    </footer>
+        <figure class="day__photo" id="photoWrap">
+          <div class="polaroid">
+            <img id="photo" src="img/huntin.jpg" alt="Triss prowling through green grass" style="object-position: 30% 50%">
+          </div>
+        </figure>
+      </div>
+    </section>
+
+    <section class="band band--paper" id="growing-up">
+      <div class="wrap">
+        <h2 class="h2">Growing up</h2>
+        <p>Born November 21, 2021. Tiny, wrinkly, and already making plans.</p>
+        <div class="roll">
+          <figure class="polaroid" style="--r:-2deg">
+            <img src="img/triss--on-litter-day.jpg" alt="A tiny Triss held up in someone's hands" style="object-position: 50% 40%">
+            <figcaption class="hand">Litter day. Day one of being the boss.</figcaption>
+          </figure>
+          <figure class="polaroid" style="--r:2deg">
+            <img src="img/triss-litter.jpg" alt="The whole litter of Vizsla puppies looking up at the camera">
+            <figcaption class="hand">The whole crew.</figcaption>
+          </figure>
+          <figure class="polaroid" style="--r:-1.5deg">
+            <img src="img/triss-and-siblings.jpg" alt="Triss piled up with her siblings">
+            <figcaption class="hand">Me and the siblings.</figcaption>
+          </figure>
+          <figure class="polaroid" style="--r:2.5deg">
+            <img src="img/triss-birthday.jpg" alt="Puppies in a pile, one being petted by a hand" style="object-position: 60% 40%">
+            <figcaption class="hand">Roll call.</figcaption>
+          </figure>
+          <figure class="polaroid" style="--r:2deg">
+            <img src="img/triss-first-vet-visit.jpg" alt="Triss in a laundry basket on the way to her first vet visit" style="object-position: 70% 60%">
+            <figcaption class="hand">First vet visit. Laundry basket taxi.</figcaption>
+          </figure>
+          <figure class="polaroid" style="--r:-2.5deg">
+            <img src="img/triss-made-it-home.jpg" alt="Triss in a striped sweater chewing a toy" style="object-position: 60% 50%">
+            <figcaption class="hand">Made it home, February 2022.</figcaption>
+          </figure>
+          <figure class="polaroid" style="--r:1.5deg">
+            <img src="img/brave-new-owrld.jpg" alt="Triss sitting on a wood floor in a pink and green sweater" style="object-position: 50% 55%">
+            <figcaption class="hand">Brave new world.</figcaption>
+          </figure>
+          <figure class="polaroid" style="--r:-2deg">
+            <img src="img/first-b-day.jpg" alt="Triss wearing a birthday girl headband" style="object-position: 50% 70%">
+            <figcaption class="hand">One year old. November 21, 2022.</figcaption>
+          </figure>
+        </div>
+      </div>
+    </section>
+
+    <section class="band" id="references">
+      <div class="wrap">
+        <h2 class="h2">References</h2>
+        <p>Available upon request. Actually, here they are.</p>
+        <div class="refs">
+          <div>
+            <div class="ref__pics">
+              <figure class="polaroid">
+                <img src="img/daddy-dewey.jpg" alt="Dewey wearing blue ribbons" style="object-position: 50% 30%">
+              </figure>
+              <figure class="polaroid">
+                <img src="img/daddy-dewey2.jpg" alt="Dewey seated on a throne of ribbons" style="object-position: 50% 55%">
+              </figure>
+            </div>
+            <div class="ref__who">Dewey, Dad</div>
+            <p class="ref__says">The ribbons are his. The attitude is inherited.</p>
+          </div>
+          <div>
+            <div class="ref__pics">
+              <figure class="polaroid">
+                <img src="img/momma.jpg" alt="Piper curled up with her puppies" style="object-position: 50% 40%">
+              </figure>
+              <figure class="polaroid">
+                <img src="img/momms-piper.jpg" alt="Piper resting on a blanket">
+              </figure>
+            </div>
+            <div class="ref__who">Piper, Mom</div>
+            <p class="ref__says">Raised a whole litter and still has the look to prove it.</p>
+          </div>
+        </div>
+      </div>
+    </section>
+  </main>
+
+  <footer class="foot">
+    <div class="wrap foot__in">
+      <p>Want to know more about the breed? <a href="https://en.wikipedia.org/wiki/Vizsla" target="_blank" rel="noopener">Vizslas on Wikipedia</a> or visit Triss's breeder, <a href="https://www.facebook.com/adeavizsla" target="_blank" rel="noopener">Adéa Vizsla</a>.</p>
+      <small>Orange and Unemployed, 2026. <a href="old-site/index.html">See the original site</a></small>
+    </div>
+  </footer>
+
+  <script>
+    const stops = [
+      { t: "6:15 AM", short: "6:15", title: "Yard security", text: "Anything that moves out there is a suspect.", img: "img/huntin.jpg", alt: "Triss prowling through green grass", pos: "30% 50%" },
+      { t: "9:00 AM", short: "9:00", title: "Office assistant", text: "Reviewing the paperwork. With my paws.", img: "img/helping-pratice-law.jpg", alt: "Triss standing on a desk, nose down on papers", pos: "70% 25%" },
+      { t: "1:30 PM", short: "1:30", title: "Stop working", text: "This is a formal request. Look at me.", img: "img/stop-working.jpg", alt: "Triss sitting on the desk and staring at the camera", pos: "80% 40%" },
+      { t: "3:00 PM", short: "3:00", title: "Safe space", text: "Nap in progress. Do not knock.", img: "img/in-the-safe-space.jpg", alt: "Triss curled up inside a felt dog cave", pos: "50% 50%" },
+      { t: "7:30 PM", short: "7:30", title: "Dressed for dinner", text: "Every evening is my birthday if I say so.", img: "img/first-b-day.jpg", alt: "Triss wearing a birthday girl headband", pos: "50% 70%" }
+    ];
+    const $ = id => document.getElementById(id);
+    const clock = $("clock"), stopsEl = $("stops"), wrap = $("photoWrap"), photo = $("photo");
+    stops.forEach((s, i) => {
+      const b = document.createElement("button");
+      b.type = "button"; b.textContent = s.short;
+      b.addEventListener("click", () => { clock.value = i; show(i); });
+      stopsEl.appendChild(b);
+    });
+    function show(i) {
+      const s = stops[i];
+      $("time").textContent = s.t;
+      $("title").textContent = s.title;
+      $("text").textContent = s.text;
+      clock.setAttribute("aria-valuetext", s.t + ", " + s.title);
+      [...stopsEl.children].forEach((b, n) => b.setAttribute("aria-pressed", n === i));
+      wrap.classList.add("is-swap");
+      setTimeout(() => {
+        photo.src = s.img; photo.alt = s.alt; photo.style.objectPosition = s.pos;
+        photo.onload = () => wrap.classList.remove("is-swap");
+        setTimeout(() => wrap.classList.remove("is-swap"), 400);
+      }, 200);
+    }
+    clock.addEventListener("input", () => show(+clock.value));
+    show(0);
+  </script>
 </body>
 </html>
